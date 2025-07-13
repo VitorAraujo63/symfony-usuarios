@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "2619178e-e8f0-4796-a9ea-0eec9f209dd0",
+		"name": "api_symfony",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43152946"
+	},
+	"item": [
+		{
+			"name": "Lista",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/api/v1/lista",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"v1",
+						"lista"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"UsuarioTeste\",\n    \"email\": \"teste@teste.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/api/v1/cadastra?nome=UsuarioTeste&email=teste2@teste.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"v1",
+						"cadastra"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "UsuarioTeste"
+						},
+						{
+							"key": "email",
+							"value": "teste2@teste.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

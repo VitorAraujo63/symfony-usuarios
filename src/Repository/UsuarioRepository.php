@@ -16,6 +16,15 @@ class UsuarioRepository extends ServiceEntityRepository
         parent::__construct($registry, Usuario::class);
     }
 
+    public function pegarTodos()
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.id >= :val')
+            ->setParameter('val', 1)
+            ->getQuery()
+            ->getArrayResult();
+    }
+
     //    /**
     //     * @return Usuario[] Returns an array of Usuario objects
     //     */
