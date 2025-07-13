@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Usuario;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,8 +22,29 @@ class UsuarioController extends AbstractController
     }
 
     #[Route('/salvar', methods: ['POST'], name: 'salvar')]
-    public function salvar(): Response
+    public function salvar(Request $request, EntityManagerInterface $doctrine): Response
     {
+        $data = $request->request->all();
+
+        $usuario = new Usuario;
+
+        $usuario->setNome($data['nome']);
+        $usuario->setEmail($data['email']);
+
+        $doctrine->persist($usuario);
+        $doctrine->flush();
+
+        if( $usuario->getID() ) //if( $doctrine->contains($usuario) )
+        {
+            return $this->render('usuario/sucesso.html.twig', [
+                "fulano" => $data['nome']
+            ]);
+        } else {
+            return $this->render('usuario/erro.html.twig', [
+                "fulano" => $data['nome']
+            ]);
+        }
+
         return new Response("Implementar gravação ao banco de dados");
     }
 }
